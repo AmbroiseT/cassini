@@ -1,3 +1,4 @@
+#Tree class used for storing/accessing elements by ID faster than with a list
 class ElementsABR:
     left = None
     right = None
