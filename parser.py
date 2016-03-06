@@ -36,7 +36,7 @@ print("Finding all elts would take "+str((end-start) * len(nodes))+" seconds")
 #measuring time to find elements now with a dictionnary
 start = time.clock()
 
-found = dictnodes[3457435942]
+found = dictnodes.get(345942)
 
 end = time.clock()
 
@@ -55,7 +55,7 @@ for node in nodes:
 #The only problem is that it takes more time to create the structure, but it's worth it!
 start = time.clock()
 
-match = tree.findById(3457435942)
+match = tree.findById(345735942)
 
 end = time.clock()
 

@@ -56,6 +56,20 @@ class ElementsABR:
                 else:
                     current = current.left
 
+#Container for all Map Data
+class ParsedMap:
+    nodes  = {}
+    ways = {}
+    minlat = 0
+    maxlat = 0
+    minlon = 0
+    maxlon = 0
+    def describe(self):
+        print("Parsed Map : ")
+        print("Dimensions : {} {} -> {} {}".format(self.minlat, self.minlon, self.maxlat, self.maxlon))
+        print("Nodes : {}, ways : {}".format(len(self.nodes), len(self.ways)))
+        
+
 class Elt:
     id = -1
     visible = True
@@ -76,7 +90,7 @@ class NodeElt(Elt):
 class Way(Elt):
     nodes = []
     def __init__(self, id, visible=True,):
-        super(NodeElt, self).__init__(id, visible)
+        super(Way, self).__init__(id, visible)
         
     
 class Area(Way):
