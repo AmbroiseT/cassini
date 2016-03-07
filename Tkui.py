@@ -18,13 +18,18 @@ canvas = Canvas(top, width=echelle.maxX, height=echelle.maxY)
 canvas.create_polygon([(0, 0), (100, 120), (200, 300)])
 
 maxlen = 0
+minlen = 1000
+print("Nombre de ways : {}".format(len(mapData.ways)))
 for key, way in mapData.ways.items():
 	points = [(echelle.convertLatPosToPx(node.lat), echelle.convertLonPosToPx(node.lon)) for node in way.nodes]
-	#print(points)
+	#print("Way {} has {} nodes".format(way.id, len(way.nodes)))
 	maxlen = len(points) if len(points)>maxlen else maxlen
-	canvas.create_polygon(points)
+	minlen = len(points) if len(points)<minlen else minlen
+	if(len(points)<20 and len(points)>2):
+		canvas.create_polygon(points)
 
 print("Maxlen = {}".format(maxlen))
+print("Minlen = {}".format(minlen))
 canvas.pack()
 
 
