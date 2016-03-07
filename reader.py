@@ -30,16 +30,16 @@ def createMapFromFile(path):
     for way in parsedtree.findall("way"):
         element = Way(int(way.get("id")))
         for nd in way.findall("nd"):
-            element.nodes.append(nd)
+            element.nodes.append(nodes.get(int(nd.get("ref"))))
         ways[int(way.get("id"))] = element 
 
     retour.ways = ways
 
     return retour
 
-result = createMapFromFile("data/map.osm")
-print("Succesfully parsed!")
-result.describe()
+#result = createMapFromFile("data/map.osm")
+#print("Succesfully parsed!")
+#result.describe()
 
-echelle = Echelle(result, 500)
-echelle.describe()
+#echelle = Echelle(result, 500)
+#echelle.describe()

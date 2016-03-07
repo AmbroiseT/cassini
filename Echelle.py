@@ -29,6 +29,16 @@ class Echelle:
 		return latitude*self.mult
 	def convertLongitudeToKm(self, longitude):
 		return longitude*self.mult*self.corr
+
+	def convertLatitudeToPx(self, latitude):
+		return self.convertKmToPx(self.convertLatitudeToKm(latitude))
+	def convertLongitudeToPx(self, longitude):
+		return self.convertKmToPx(self.convertLongitudeToKm(longitude))
+
+	def convertLatPosToPx(self, lat):
+		return self.convertKmToPx(self.convertLatitudeToKm(lat - self.carte.minlat))
+	def convertLonPosToPx(self, lon):
+		return self.convertKmToPx(self.convertLongitudeToKm(lon - self.carte.minlon))
 	def convertKmToPx(self, km):
 		return self.facteurKmPx * km
 	def describe(self):
