@@ -91,6 +91,7 @@ class Way(Elt):
     nodes = []
     def __init__(self, id, visible=True,):
         super(Way, self).__init__(id, visible)
+        self.nodes = []
         
     
 class Area(Way):

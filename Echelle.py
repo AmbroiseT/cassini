@@ -19,9 +19,9 @@ class Echelle:
 	def __init__(self, carte, maxX=500):
 		self.maxX = maxX
 		self.carte = carte
-		self.corr = math.cos(self.carte.maxlat)
-		self.largeurKm = self.convertLatitudeToKm(self.carte.maxlat - self.carte.minlat)
-		self.hauteurKm = self.convertLongitudeToKm(self.carte.maxlon -self.carte.minlon)
+		self.corr = math.cos(math.radians(self.carte.maxlat))
+		self.hauteurKm = self.convertLatitudeToKm(self.carte.maxlat - self.carte.minlat)
+		self.largeurKm = self.convertLongitudeToKm(self.carte.maxlon -self.carte.minlon)
 		self.facteurKmPx = self.maxX/self.largeurKm
 		self.maxY = self.convertKmToPx(self.hauteurKm)
 	
@@ -36,7 +36,7 @@ class Echelle:
 		return self.convertKmToPx(self.convertLongitudeToKm(longitude))
 
 	def convertLatPosToPx(self, lat):
-		return self.convertKmToPx(self.convertLatitudeToKm(lat - self.carte.minlat))
+		return self.maxY - self.convertKmToPx(self.convertLatitudeToKm(lat - self.carte.minlat))
 	def convertLonPosToPx(self, lon):
 		return self.convertKmToPx(self.convertLongitudeToKm(lon - self.carte.minlon))
 	def convertKmToPx(self, km):
@@ -45,6 +45,8 @@ class Echelle:
 		print("Echelle de la carte")
 		print("Facteur multiplicatif = {}".format(self.mult))
 		print("Facteur correctif = {}".format(self.corr))
+		print("Un degré de longitude fait {} km".format(self.corr*self.mult))
+		print("Latitude max {}".format(self.carte.maxlat))
 		print("Largeur Km = {}, hauteur Km = {}".format(self.largeurKm, self.hauteurKm))
 		print("MaxX = {}, maxY={}".format(self.maxX, self.maxY))
 		print("Facteur Km to Px : {}".format(self.facteurKmPx))
