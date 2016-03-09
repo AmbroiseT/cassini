@@ -17,8 +17,8 @@ dictnodes = {}
 
 
 for atype in e.findall("node"):
-    nodes.append(NodeElt(int(atype.get("id")), atype.get("lat"), atype.get("lon")))
-    dictnodes[int(atype.get("id"))] = NodeElt(int(atype.get("id")), atype.get("lat"), atype.get("lon"))
+	nodes.append(NodeElt(int(atype.get("id")), atype.get("lat"), atype.get("lon")))
+	dictnodes[int(atype.get("id"))] = NodeElt(int(atype.get("id")), atype.get("lat"), atype.get("lon"))
 
 print(len(nodes))
 
@@ -49,7 +49,7 @@ tree = ElementsABR()
 #Shuffle the order of nodes, else our tree will just be a chained list => worse perfomance possible...
 shuffle(nodes)
 for node in nodes:
-    tree.addElementIter(node)
+	tree.addElementIter(node)
 
 #measuring time to find elements... With a orderred tree, it's way faster! o(log N)
 #The only problem is that it takes more time to create the structure, but it's worth it!

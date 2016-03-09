@@ -22,13 +22,17 @@ def createMapFromFile(path):
 
     nodes = {}
     for node in root.findall("node"):
-        nodes[int(node.get("id"))] = NodeElt(int(node.get("id")), float(node.get("lat")), float(node.get("lon")))
-
+        element = NodeElt(int(node.get("id")), float(node.get("lat")), float(node.get("lon")))
+        for tag in node.findall("tag"):
+            element.tags[tag.get("k")] = tag.get("v")
+        nodes[int(node.get("id"))] = element
     retour.nodes = nodes
     ways = {}
     for way in root.findall("way"):
         element = Way(int(way.get("id")))
         element.nodes = []
+        for tag in way.findall("tag"):
+            element.tags[tag.get("k")] = tag.get("v") 
         for nd in way.findall("nd"):
             element.nodes.append(nodes.get(int(nd.get("ref"))))
         ways[int(way.get("id"))] = element 
