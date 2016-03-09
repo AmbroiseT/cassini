@@ -35,7 +35,7 @@ for key, way in mapData.ways.items():
 	if("waterway" in way.tags):
 		color = palette.get("waterway")
 	if(len(points)<50 and len(points)>2 and way.isArea()):
-		canvas.create_polygon(points, fill=color, width=3)
+		canvas.create_polygon(points, fill=color, outline='black', width=1)
 
 print("Maxlen = {}".format(maxlen))
 print("Minlen = {}".format(minlen))
