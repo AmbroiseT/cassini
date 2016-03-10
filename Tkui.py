@@ -1,5 +1,6 @@
 from tkinter import *
 from reader import createMapFromFile
+from magic import createMagicMap
 from palette import paletteStandard
 
 from Echelle import Echelle
@@ -12,6 +13,8 @@ echelle = Echelle(mapData, maxX=500)
 echelle.describe()
 print("Une longitude de 2.221 donne {} pixels".format(echelle.convertLonPosToPx(2.221)))
 print("Une latitude de 48.8514 donne {} pixels".format(echelle.convertLatPosToPx(48.8514)))
+
+magic = createMagicMap()
 
 top = Tk()
 
@@ -36,7 +39,10 @@ for key, way in mapData.ways.items():
 		color = palette.get("waterway")
 	if(len(points)<50 and len(points)>2 and way.isArea()):
 		canvas.create_polygon(points, fill=color, outline='black', width=1)
-
+	elif len(points)<50 and magic.get(way.tags.get("highway")) != None:
+		dimension = echelle.convertKmToPx(magic.get(way.tags["highway"]))
+		for i in range(len(points)-1):
+			canvas.create_line(points[i], points[i+1], fill="black", width=dimension)
 print("Maxlen = {}".format(maxlen))
 print("Minlen = {}".format(minlen))
 canvas.pack()
