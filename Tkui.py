@@ -5,7 +5,7 @@ from palette import paletteStandard
 from Echelle import Echelle
 
 
-mapData = createMapFromFile("data/map2.osm")
+mapData = createMapFromFile("data/map3.osm")
 
 mapData.describe()
 echelle = Echelle(mapData, maxX=500)
