@@ -37,9 +37,9 @@ for key, way in mapData.ways.items():
 		color = palette.get("building")
 	if("waterway" in way.tags):
 		color = palette.get("waterway")
-	if(len(points)<50 and len(points)>2 and way.isArea()):
+	if len(points)<50 and len(points)>2 and way.isArea():
 		canvas.create_polygon(points, fill=color, outline='black', width=1)
-	elif len(points)<50 and magic.get(way.tags.get("highway")) != None:
+	elif magic.get(way.tags.get("highway")) != None:
 		dimension = echelle.convertKmToPx(magic.get(way.tags["highway"]))
 		for i in range(len(points)-1):
 			canvas.create_line(points[i], points[i+1], fill="black", width=dimension)
