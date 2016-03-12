@@ -8,4 +8,5 @@ def paletteStandard():
 	palette["building"] = 'white'
 	palette["highway"] = 'grey'
 	palette["waterway"] = "blue"
+	palette["landuse"] = 'green'
 	return palette

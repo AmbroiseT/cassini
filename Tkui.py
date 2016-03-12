@@ -37,6 +37,9 @@ for key, way in mapData.ways.items():
 		color = palette.get("building")
 	if("waterway" in way.tags):
 		color = palette.get("waterway")
+	if('landuse' in way.tags or ('leisure' in way.tags and way.tags['leisure']=='pitch')):
+		color = palette.get("landuse")
+		print("Landuse element = {}".format(way))
 	if len(points)<50 and len(points)>2 and way.isArea():
 		canvas.create_polygon(points, fill=color, outline='black', width=1)
 	elif magic.get(way.tags.get("highway")) != None:
