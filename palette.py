@@ -11,10 +11,10 @@ def palette_standard():
 
 
 class Style:
-    rules = {"default": {'color': 'black', 'visible': 'false', 'width': 0}}
+    rules = {"default": {'color': 'black', 'visible': 'false', 'width': 0, "line-color" : 'black'}}
 
     def __init__(self, path="style/style1.json"):
-        if not path is None:
+        if path is not None:
             self.import_rules_from_file(path)
 
     def import_rules_from_file(self, path):
@@ -30,7 +30,8 @@ class Style:
             except json.JSONDecodeError:
                 print("Error decoding json file!")
 
-    def apply(self, rule, element):
+    @staticmethod
+    def apply(rule, element):
         """
         Check if a rule applies to an element
         :param element Element to check
@@ -49,6 +50,19 @@ class Style:
             return False
         return True
 
+    @staticmethod
+    def priority_level(rule):
+        tab = rule.split(':')
+        if len(tab) < 2:
+            return 0
+        else:
+            priority = 0
+            if tab[0] != '':
+                priority += 1 if tab[0]=='highway' else 2
+            if tab[1] != '':
+                priority += 3
+            return priority
+
     def get_parameters(self, element):
         """
         Return parameters to apply to the rendering for this way
@@ -57,9 +71,11 @@ class Style:
         """
         assert isinstance(element, Elt)
         parameter = self.rules['default']
+        last_applied = 'default'
         for rule in self.rules:
-            if self.apply(rule, element):
+            if self.apply(rule, element) and self.priority_level(rule) >= self.priority_level(last_applied):
                 parameter.update(self.rules[rule])
+                last_applied = rule
         return parameter
 
 
