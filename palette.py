@@ -41,6 +41,7 @@ class Style:
         assert isinstance(element, Elt)
         members = rule.split(':')
         tags = element.tags
+
         assert isinstance(tags, dict)
         if len(members) != 2:
             return False
