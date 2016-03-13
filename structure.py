@@ -23,6 +23,10 @@ class Elt:
         self.visible = visible
         self.tags = {}
 
+    @property
+    def tag_keys(self):
+        return self.tags.keys()
+
 
 class NodeElt(Elt):
     lat = 0

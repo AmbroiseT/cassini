@@ -1,3 +1,4 @@
 {
-  "building:church" : {"color" : "grey", "visible" : "true"}
+  "building:church" : {"color" : "grey", "visible" : "true"},
+  ":park" : {"color" : "green", "visible" : "true"}
 }
