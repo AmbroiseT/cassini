@@ -1,7 +1,7 @@
 from tkinter import *
 from reader import create_map_from_file
 from magic import createMagicMap
-from palette import paletteStandard
+from palette import palette_standard
 
 from Echelle import Echelle
 
@@ -21,7 +21,7 @@ top = Tk()
 canvas = Canvas(top, width=echelle.maxX, height=echelle.maxY)
 
 
-palette = paletteStandard()
+palette = palette_standard()
 maxlen = 0
 minlen = 1000
 print("Nombre de ways : {}".format(len(mapData.ways)))
