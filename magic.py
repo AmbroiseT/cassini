@@ -1,14 +1,5 @@
 def createMagicMap():
-	voie = 3.5/1000
-	magic = {}
-	magic['motorway']=voie*4
-	magic['trunk'] = voie*4
-	magic['primary'] = voie*3
-	magic['secondary']=voie*2
-	magic['tertiary']=voie*2
-	magic['unclassified']=voie*1
-	magic['residential']=voie*1
-	magic['service']=voie*1
-	magic['pedestrian']=voie*1
-	magic['footway']=voie*0.5
-	return magic
+    way = 3.5 / 1000
+    return {'motorway': way * 4, 'trunk': way * 4, 'primary': way * 3, 'secondary': way * 2, 'tertiary': way * 2,
+             'unclassified': way * 1, 'residential': way * 1, 'service': way * 1, 'pedestrian': way * 1,
+             'footway': way * 0.5}
