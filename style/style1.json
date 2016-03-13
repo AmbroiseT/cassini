@@ -1,4 +1,16 @@
 {
   "building:church" : {"color" : "grey", "visible" : "true"},
-  ":park" : {"color" : "green", "visible" : "true"}
+  ":park" : {"color" : "green", "visible" : "true"},
+  "highway:" : {"color" : "black", "visible" : "true", "width" : "0.0035"},
+  "highway:motorway" : {"color" : "black", "visible" : "true", "width" : "0.014"},
+  "highway:trunk" : {"color" : "black", "visible" : "true", "width" : "0.014"},
+  "highway:primary" : {"color" : "black", "visible" : "true", "width" : "0.0105"},
+  "highway:secondary" : {"color" : "black", "visible" : "true", "width" : "0.007"},
+  "highway:tertiary" : {"color" : "black", "visible" : "true", "width" : "0.007"},
+  "highway:residential" : {"color" : "black", "visible" : "true", "width" : "0.0035"},
+  "highway:unclassified" : {"color" : "black", "visible" : "true", "width" : "0.0035"},
+  "highway:pedestrian" : {"color" : "black", "visible" : "true", "width" : "0.0035"},
+  "highway:footway" : {"color" : "black", "visible" : "true", "width" : "0.00175"},
+  "building:" : {"color" : "white", "visible" : "true"},
+  "waterway:" : {"color" : "blue", "visible" : "true"}
 }

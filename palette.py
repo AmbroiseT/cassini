@@ -2,6 +2,7 @@ import json
 
 from structure import Elt
 
+
 def palette_standard():
     """
     Returns standard colors for drawing
@@ -12,8 +13,9 @@ def palette_standard():
 class Style:
     rules = {"default": {'color': 'black', 'visible': 'false', 'width': '0'}}
 
-    def __init_(self):
-        pass
+    def __init__(self, path="style/style1.json"):
+        if not path is None:
+            self.import_rules_from_file(path)
 
     def import_rules_from_file(self, path):
         """
@@ -57,7 +59,7 @@ class Style:
         parameter = self.rules['default']
         for rule in self.rules:
             if self.apply(rule, element):
-                parameter = self.rules[rule]
+                parameter.update(self.rules[rule])
         return parameter
 
 
@@ -65,7 +67,5 @@ if __name__ == '__main__':
     style = Style()
     e = Elt(1234)
     e.tags = {'building': 'park'}
-    print(style.rules)
-    style.import_rules_from_file("style/style1.json")
     print(style.rules)
     print(style.get_parameters(e))

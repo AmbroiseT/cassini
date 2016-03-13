@@ -1,10 +1,9 @@
 from tkinter import *
 from reader import create_map_from_file
 from magic import createMagicMap
-from palette import palette_standard
+from palette import Style
 
 from Echelle import Echelle
-
 
 mapData = create_map_from_file("data/map3.osm")
 
@@ -20,35 +19,17 @@ top = Tk()
 
 canvas = Canvas(top, width=echelle.maxX, height=echelle.maxY)
 
-
-palette = palette_standard()
-maxlen = 0
-minlen = 1000
-print("Nombre de ways : {}".format(len(mapData.ways)))
+style = Style()
 for key, way in mapData.ways.items():
-	points = [(echelle.convert_lon_pos_to_px(node.lon), echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
-	#print("Way {} has {} nodes".format(way.id, len(way.nodes)))
-	maxlen = len(points) if len(points)>maxlen else maxlen
-	minlen = len(points) if len(points)<minlen else minlen
-	color = 'black'
-	if('highway' in way.tags):
-		color = palette.get('highway')
-	if("building" in way.tags):
-		color = palette.get("building")
-	if("waterway" in way.tags):
-		color = palette.get("waterway")
-	if('landuse' in way.tags or ('leisure' in way.tags and way.tags['leisure']=='pitch')):
-		color = palette.get("landuse")
-		print("Landuse element = {}".format(way))
-	if len(points)<50 and len(points)>2 and way.isArea():
-		canvas.create_polygon(points, fill=color, outline='black', width=1)
-	elif magic.get(way.tags.get("highway")) != None:
-		dimension = echelle.convert_km_to_px(magic.get(way.tags["highway"]))
-		for i in range(len(points)-1):
-			canvas.create_line(points[i], points[i+1], fill="black", width=dimension)
-print("Maxlen = {}".format(maxlen))
-print("Minlen = {}".format(minlen))
-canvas.pack()
+    points = [(echelle.convert_lon_pos_to_px(node.lon), echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
 
+    style_parameters = style.get_parameters(way)
+
+    if 2 < len(points) < 50 and way.isArea():
+        canvas.create_polygon(points, fill=style_parameters.get('color', 'black'), outline='black', width=1)
+    else:
+        for i in range(len(points) - 1):
+            canvas.create_line(points[i], points[i + 1], fill="black", width=style_parameters.get('width', 0))
+canvas.pack()
 
 top.mainloop()
