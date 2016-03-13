@@ -10,8 +10,6 @@ mapData = create_map_from_file("data/map3.osm")
 mapData.describe()
 echelle = Echelle(mapData, maxX=500)
 echelle.describe()
-print("Une longitude de 2.221 donne {} pixels".format(echelle.convert_lon_pos_to_px(2.221)))
-print("Une latitude de 48.8514 donne {} pixels".format(echelle.convert_lat_pos_to_px(48.8514)))
 
 magic = createMagicMap()
 
@@ -29,7 +27,7 @@ for key, way in mapData.ways.items():
         canvas.create_polygon(points, fill=style_parameters.get('color', 'black'), outline='black', width=1)
     else:
         for i in range(len(points) - 1):
-            canvas.create_line(points[i], points[i + 1], fill="black", width=style_parameters.get('width', 0))
+            canvas.create_line(points[i], points[i + 1], fill="black", width=echelle.convert_km_to_px(style_parameters.get('width', 0)))
 canvas.pack()
 
 top.mainloop()

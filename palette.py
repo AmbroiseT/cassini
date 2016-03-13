@@ -11,7 +11,7 @@ def palette_standard():
 
 
 class Style:
-    rules = {"default": {'color': 'black', 'visible': 'false', 'width': '0'}}
+    rules = {"default": {'color': 'black', 'visible': 'false', 'width': 0}}
 
     def __init__(self, path="style/style1.json"):
         if not path is None:
