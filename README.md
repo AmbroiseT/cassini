@@ -6,6 +6,9 @@ Parsing and rendering OSRM raw data with Python
 
 [Original Open street Map](http://www.openstreetmap.org/export#map=18/48.85470/2.37355)
 
+### New Render, with roads included :
+![Capture](/images/Capture2.PNG)
+
 ### Stylesheet support :
 You are now able to use stylesheets to pick your own choice of colors!
 The format of stylesheets is json, and heavily inspired on css:
