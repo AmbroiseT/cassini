@@ -4,7 +4,7 @@ from palette import Style
 
 from Echelle import Echelle
 
-mapData = create_map_from_file("data/map.osm")
+mapData = create_map_from_file("data/map3.osm")
 
 mapData.describe()
 echelle = Echelle(mapData, maxX=500)
@@ -16,7 +16,7 @@ canvas = Canvas(top, width=echelle.maxX, height=echelle.maxY)
 
 style = Style()
 
-for key, way in mapData.ways.items():
+for way in mapData.ways.values():
     points = [(echelle.convert_lon_pos_to_px(node.lon), echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
 
     style_parameters = style.get_parameters(way)
