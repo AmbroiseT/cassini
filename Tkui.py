@@ -4,7 +4,7 @@ from palette import Style
 
 from Echelle import Echelle
 
-mapData = create_map_from_file("data/Exemples/02_paris_place_des_vosges.osm")
+mapData = create_map_from_file("data/map.osm")
 
 mapData.describe()
 echelle = Echelle(mapData, maxX=500)
@@ -15,6 +15,7 @@ top = Tk()
 canvas = Canvas(top, width=echelle.maxX, height=echelle.maxY)
 
 style = Style()
+
 for key, way in mapData.ways.items():
     points = [(echelle.convert_lon_pos_to_px(node.lon), echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
 
@@ -27,6 +28,8 @@ for key, way in mapData.ways.items():
         for i in range(len(points) - 1):
             canvas.create_line(points[i], points[i + 1], fill=style_parameters.get('line-color', 'grey'),
                                width=echelle.convert_km_to_px(style_parameters.get('width', 0)))
+
+
 canvas.pack()
 
 top.mainloop()

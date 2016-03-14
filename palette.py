@@ -41,7 +41,6 @@ class Style:
         assert isinstance(element, Elt)
         members = rule.split(':')
         tags = element.tags
-
         assert isinstance(tags, dict)
         if len(members) != 2:
             return False
@@ -53,13 +52,18 @@ class Style:
 
     @staticmethod
     def priority_level(rule):
+        """
+        Get the priority level of the rule
+        :param rule: a rule ('key:value')
+        :return: a number, the higher the number, the higher the priority
+        """
         tab = rule.split(':')
         if len(tab) < 2:
             return 0
         else:
             priority = 0
             if tab[0] != '':
-                priority += 1 if tab[0]=='highway' else 2
+                priority += 1 if tab[0] == 'highway' else 2
             if tab[1] != '':
                 priority += 3
             return priority
@@ -71,7 +75,7 @@ class Style:
         :return: a dictionary containing the parameters
         """
         assert isinstance(element, Elt)
-        parameter = self.rules['default']
+        parameter = self.rules['default'].copy()
         last_applied = 'default'
         for rule in self.rules:
             if self.apply(rule, element) and self.priority_level(rule) >= self.priority_level(last_applied):
@@ -83,6 +87,6 @@ class Style:
 if __name__ == '__main__':
     style = Style()
     e = Elt(1234)
-    e.tags = {'building': 'park'}
+    e.tags = {'height': '40', 'building:part': 'yes', 'roof:orientation': 'along', 'roof:colour': '#2A2E52', 'roof:height': '10', 'roof:shape': 'mansard'}
     print(style.rules)
     print(style.get_parameters(e))

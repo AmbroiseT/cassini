@@ -11,6 +11,7 @@
   "highway:pedestrian" : {"line-color" : "grey", "width" : 0.0035},
   "highway:footway" : {"width" : 0.00175},
   "building:" : {"color" : "white", "visible" : "true"},
-  "waterway:" : {"color" : "blue", "visible" : "true"},
-  "natural:water" : {"color" : "blue"}
+  "waterway:" : {"line-color" : "blue", "visible" : "true", "width" : 0.0035},
+  "natural:water" : {"color" : "blue"},
+  "natural:island" : {"color" : "grey"}
 }
