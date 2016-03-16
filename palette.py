@@ -18,12 +18,11 @@ class Style:
         self.rules = {"default": {'color': 'black', 'visible': 'false', 'width': 0, "line-color" : 'black'}}
         if path is not None:
             self.import_rules_from_file(path)
-            self.order_keys()
 
     def order_keys(self):
         self.ordered_keys = sorted([key for key in self.rules], key=Style.priority_level)
 
-    
+
     def import_rules_from_file(self, path):
         """
         Updates rules with the rules contained in json file
@@ -34,6 +33,8 @@ class Style:
             try:
                 parsed = json.load(json_data)
                 self.rules.update(parsed)
+                #Need to refresh the order of keys
+                self.order_keys()
             except json.JSONDecodeError:
                 print("Error decoding json file!")
 
