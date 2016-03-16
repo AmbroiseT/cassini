@@ -14,6 +14,7 @@ class TkUI():
         self.top = Tk()
         self.canvas = canvas = Canvas(self.top, width=self.echelle.maxX, height=self.echelle.maxY)
         self.canvas.bind_all("<MouseWheel>", self.on_mouse_wheel)
+        self.canvas.bind_all("<Key>", self.on_key_pressed)
 
         self.draw()
 
@@ -43,6 +44,25 @@ class TkUI():
             self.echelle.zoom /=1.5
         self.draw()
         self.canvas.pack()
+
+    def on_key_pressed(self, event):
+        decalage = 20
+        if event.keysym == "Down":
+            self.echelle.corner = (self.echelle.corner[0], self.echelle.corner[1] + self.echelle.convert_px_to_km(decalage))
+            self.draw()
+            self.canvas.pack()
+        elif event.keysym == 'Up':
+            self.echelle.corner = (self.echelle.corner[0], self.echelle.corner[1] - self.echelle.convert_px_to_km(decalage))
+            self.draw()
+            self.canvas.pack()
+        elif event.keysym == 'Right':
+            self.echelle.corner = (self.echelle.corner[0] - self.echelle.convert_px_to_km(decalage), self.echelle.corner[1])
+            self.draw()
+            self.canvas.pack()
+        elif event.keysym == 'Left':
+            self.echelle.corner = (self.echelle.corner[0] + self.echelle.convert_px_to_km(decalage), self.echelle.corner[1])
+            self.draw()
+            self.canvas.pack()
 
 
 if __name__ == '__main__':
