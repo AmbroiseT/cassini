@@ -1,5 +1,5 @@
 import math
-from structure import ParsedMap
+from structure import ParsedMap, Way
 
 
 class Echelle:
@@ -12,9 +12,9 @@ class Echelle:
     maxX = 500
     maxY = 500
 
-    #Attributes for zooming and moving :
+    # Attributes for zooming and moving :
     zoom = 1
-    #Relative position in km
+    # Relative position in km
     corner = (0, 0)
 
     factor_km_px = 1
@@ -34,7 +34,7 @@ class Echelle:
         self.zoom = 1
         self.corner = (0, 0)
 
-    #Distance converters
+    # Distance converters
     def convert_lat_to_km(self, latitude):
         return latitude * self.mult
 
@@ -53,13 +53,12 @@ class Echelle:
     def convert_px_to_km(self, px):
         return px / (self.factor_km_px * self.zoom)
 
-    #Position converters
+    # Position converters
     def convert_lat_pos_to_px(self, lat):
         return self.maxY - self.convert_km_to_px_y(self.convert_lat_to_km(lat - self.map.min_lat))
 
     def convert_lon_pos_to_px(self, lon):
         return self.convert_km_to_px_x(self.convert_lon_to_km(lon - self.map.min_lon))
-
 
     def convert_km_to_px_x(self, km):
         return self.factor_km_px * (km + self.corner[0]) * self.zoom
@@ -67,6 +66,17 @@ class Echelle:
     def convert_km_to_px_y(self, km):
         return self.factor_km_px * (self.corner[1] + km) * self.zoom
 
+    def is_to_draw(self, way):
+        '''
+        Method used to know if a certain element should be drawn on the screen (ie if it is inside the frame)
+        :param way: the element
+        :return: True if the element should be drawn
+        '''
+        assert isinstance(way, Way)
+        return not ((0 > self.convert_lon_pos_to_px(way.max_lon)) or
+                    (self.maxX < self.convert_lon_pos_to_px(way.min_lon)) or
+                    (0 > self.convert_lat_pos_to_px(way.max_lat)) or
+                    (self.maxY < self.convert_lat_pos_to_px(way.min_lat)))
 
     def describe(self):
         print("Echelle de la carte")

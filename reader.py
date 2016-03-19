@@ -37,6 +37,7 @@ def create_map_from_file(path):
         for nd in way.findall("nd"):
             element.nodes.append(nodes.get(int(nd.get("ref"))))
         ways[int(way.get("id"))] = element
+        element.calc_borders()
 
     retour.ways = ways
 
