@@ -28,7 +28,7 @@ class TkUI():
         self.canvas.delete("all")
         start = time.clock()
         for way in self.map_data.ways.values():
-            if not self.echelle.is_to_draw(way):
+            if not self.echelle.is_to_draw(way) or (way.isArea() and echelle.is_too_small(way)):
                 notdrawn += 1
             else:
                 points = [(self.echelle.convert_lon_pos_to_px(node.lon), self.echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     mapData = create_map_from_file("data/map.osm")
 
     mapData.describe()
-    echelle = Echelle(mapData, maxX=500)
+    echelle = Echelle(mapData, maxX=1000)
     echelle.describe()
 
     style = Style()

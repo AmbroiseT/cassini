@@ -78,6 +78,17 @@ class Echelle:
                     (0 > self.convert_lat_pos_to_px(way.min_lat)) or
                     (self.maxY < self.convert_lat_pos_to_px(way.max_lat)))
 
+    def is_too_small(self, way):
+        '''
+        Method used to check if an element is too small to be drawn on the map
+        :param way:
+        :return:
+        '''
+        assert isinstance(way, Way)
+        area = (self.convert_lat_pos_to_px(way.min_lat) - self.convert_lat_pos_to_px(way.max_lat)) *\
+               (self.convert_lon_pos_to_px(way.max_lon) - self.convert_lon_pos_to_px(way.min_lon))
+        return area < (self.maxX*self.maxY)/2000
+
     def describe(self):
         print("Echelle de la carte")
         print("Facteur multiplicatif = {}".format(self.mult))
