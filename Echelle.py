@@ -75,8 +75,8 @@ class Echelle:
         assert isinstance(way, Way)
         return not ((0 > self.convert_lon_pos_to_px(way.max_lon)) or
                     (self.maxX < self.convert_lon_pos_to_px(way.min_lon)) or
-                    (0 > self.convert_lat_pos_to_px(way.max_lat)) or
-                    (self.maxY < self.convert_lat_pos_to_px(way.min_lat)))
+                    (0 > self.convert_lat_pos_to_px(way.min_lat)) or
+                    (self.maxY < self.convert_lat_pos_to_px(way.max_lat)))
 
     def describe(self):
         print("Echelle de la carte")

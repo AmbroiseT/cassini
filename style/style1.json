@@ -1,6 +1,6 @@
 {
   "building:church" : {"color" : "grey", "visible" : "true"},
-  "highway:" : {"visible" : "true", "width" : 0.0035, "line-color" : "black"},
+  "highway:" : {"visible" : "true", "width" : 0.0035, "line-color" : "grey"},
   "highway:motorway" : {"width" : 0.014},
   "highway:trunk" : {"width" : 0.014},
   "highway:primary" : {"width" : 0.0105},

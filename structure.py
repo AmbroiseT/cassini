@@ -58,13 +58,12 @@ class Way(Elt):
             max_lat = node.lat if max_lat is None or max_lat < node.lat else max_lat
             max_lon = node.lon if max_lon is None or max_lon < node.lon else max_lon
             min_lat = node.lat if min_lat is None or min_lat > node.lat else min_lat
-            min_lon = node.lon if min_lon is None or min_lon < node.lon else min_lon
+            min_lon = node.lon if min_lon is None or min_lon > node.lon else min_lon
 
         self.min_lat = min_lat
         self.max_lat = max_lat
         self.min_lon = min_lon
         self.max_lon = max_lon
-        print("Borders calculated : {} {} , {} {}".format(self.max_lon, self.max_lat, self.min_lon, self.min_lat))
 
 
 
