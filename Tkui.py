@@ -77,7 +77,7 @@ class TkUI():
 
 if __name__ == '__main__':
     #mapData = create_map_from_file("data/map.osm")
-    mapData = create_map_with_overpass(48.8514500, 2.2200800, 48.8527500, 2.2234300)
+    mapData = create_map_with_overpass(48.85280, 2.36589, 48.85410, 2.36924)
     mapData.describe()
     echelle = Echelle(mapData, maxX=1000)
     echelle.describe()

@@ -18,4 +18,10 @@ The format of stylesheets is json, and heavily inspired on css:
 ### Moving around and zooming on the map:
 You are now able to move around the map with the arrow keys of your keyboard, and to zoom with the mousewheel.
 
-It's not really optimised yet, and moving around can be pretty slow, but we'll improve that soon!
+
+### Overpass API : 
+The program is now able to download the data directly from open street map servers!
+It uses the overpass API, with the help of this [wrapper](https://github.com/mvexel/overpass-api-python-wrapper) 
+(all my thanks to the author [mvexcel](https://github.com/mvexel)).
+
+Keep in mind that the loading time can pretty long (because we query all data from osm).
