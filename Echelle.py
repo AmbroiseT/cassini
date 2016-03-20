@@ -67,11 +67,11 @@ class Echelle:
         return self.factor_km_px * (self.corner[1] + km) * self.zoom
 
     def is_to_draw(self, way):
-        '''
+        """
         Method used to know if a certain element should be drawn on the screen (ie if it is inside the frame)
         :param way: the element
         :return: True if the element should be drawn
-        '''
+        """
         assert isinstance(way, Way)
         return not ((0 > self.convert_lon_pos_to_px(way.max_lon)) or
                     (self.maxX < self.convert_lon_pos_to_px(way.min_lon)) or
@@ -79,11 +79,11 @@ class Echelle:
                     (self.maxY < self.convert_lat_pos_to_px(way.max_lat)))
 
     def is_too_small(self, way):
-        '''
+        """
         Method used to check if an element is too small to be drawn on the map
         :param way:
         :return:
-        '''
+        """
         assert isinstance(way, Way)
         area = (self.convert_lat_pos_to_px(way.min_lat) - self.convert_lat_pos_to_px(way.max_lat)) *\
                (self.convert_lon_pos_to_px(way.max_lon) - self.convert_lon_pos_to_px(way.min_lon))
