@@ -56,6 +56,10 @@ class TkUI():
         self.draw()
         self.canvas.pack()
 
+    def import_as_postscript(self, path):
+        assert isinstance(path, str)
+        self.canvas.postscript(file=path, colormode='color')
+
     def on_key_pressed(self, event):
         decal = 20
         if event.keysym == "Down":
