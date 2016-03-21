@@ -1,4 +1,4 @@
-from structure import NodeElt, Way, ParsedMap
+from structure import NodeElt, Way, ParsedMap, Relation
 
 import xml.etree.ElementTree
 
@@ -58,6 +58,7 @@ def create_map_from_etree(root, min_lat = None, min_lon = None, max_lat = None, 
             element.tags[tag.get("k")] = tag.get("v")
         nodes[int(node.get("id"))] = element
     parsed_map.nodes = nodes
+
     ways = {}
     for way in root.findall("way"):
         element = Way(int(way.get("id")))
@@ -72,6 +73,19 @@ def create_map_from_etree(root, min_lat = None, min_lon = None, max_lat = None, 
         element.calc_borders()
 
     parsed_map.ways = ways
+
+    relations = {}
+    for relation in root.findall("relation"):
+        element = Relation(int(relation.get("id")))
+        for tag in way.findall("tag"):
+            element.tags[tag.get("k")] = tag.get("v")
+        for member in way.findall("member"):
+            if member.get("type") == "way":
+                element.members.append(ways.get(int(member.get("id"))))
+            elif member.get('type') == "node":
+                element.members.append(nodes.get(int(member.get("id"))))
+
+    parsed_map.relations = relations
 
     return parsed_map
 

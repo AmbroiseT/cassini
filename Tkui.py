@@ -24,14 +24,15 @@ class TkUI():
         self.top.mainloop()
 
     def draw(self):
-        notdrawn = 0
+        not_drawn = 0
         self.canvas.delete("all")
         start = time.clock()
         for way in self.map_data.ways.values():
             if not self.echelle.is_to_draw(way) or (way.isArea() and echelle.is_too_small(way)):
-                notdrawn += 1
+                not_drawn += 1
             else:
-                points = [(self.echelle.convert_lon_pos_to_px(node.lon), self.echelle.convert_lat_pos_to_px(node.lat)) for node in way.nodes]
+                points = [(self.echelle.convert_lon_pos_to_px(node.lon), self.echelle.convert_lat_pos_to_px(node.lat))
+                          for node in way.nodes]
 
                 style_parameters = self.style.get_parameters(way)
                 if 2 < len(points) < 50 and way.isArea() and style_parameters.get("visible", False):
@@ -45,7 +46,7 @@ class TkUI():
 
         stop = time.clock()
         print("Time spent on redrawing canvas : {}".format(stop-start))
-        print("Elements not drawn : {} ".format(notdrawn))
+        print("Elements not drawn : {} ".format(not_drawn))
 
     def on_mouse_wheel(self, event):
         if event.delta > 0:
@@ -76,8 +77,8 @@ class TkUI():
 
 
 if __name__ == '__main__':
-    #mapData = create_map_from_file("data/map.osm")
-    mapData = create_map_with_overpass(48.85280, 2.36589, 48.85410, 2.36924)
+    mapData = create_map_from_file("data/map.osm")
+    #mapData = create_map_with_overpass(48.85280, 2.36589, 48.85410, 2.36924)
     mapData.describe()
     echelle = Echelle(mapData, maxX=1000)
     echelle.describe()

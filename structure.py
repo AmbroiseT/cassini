@@ -2,10 +2,20 @@
 class ParsedMap:
     nodes = {}
     ways = {}
+    relations = {}
     min_lat = 0
     max_lat = 0
     min_lon = 0
     max_lon = 0
+
+    def __init__(self):
+        self.nodes = {}
+        self.ways = {}
+        self.relations = {}
+        self.min_lat = 0
+        self.min_lon = 0
+        self.max_lat = 0
+        self.max_lon = 0
 
     def describe(self):
         print("Parsed Map : ")
@@ -65,8 +75,6 @@ class Way(Elt):
         self.min_lon = min_lon
         self.max_lon = max_lon
 
-
-
     def isArea(self):
         return len(self.nodes) > 2 and self.nodes[0].id == self.nodes[-1].id
 
@@ -74,3 +82,13 @@ class Way(Elt):
 class Area(Way):
     def __init__(self, id, visible=True, ):
         super(Area, self).__init__(id, visible)
+
+
+class Relation(Elt):
+    members = []
+
+    def __init__(self, id):
+        self.id = id
+        self.members = []
+
+
