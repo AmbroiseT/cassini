@@ -22,7 +22,6 @@ class Style:
     def order_keys(self):
         self.ordered_keys = sorted([key for key in self.rules], key=Style.priority_level)
 
-
     def import_rules_from_file(self, path):
         """
         Updates rules with the rules contained in json file

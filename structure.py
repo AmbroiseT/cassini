@@ -78,6 +78,12 @@ class Way(Elt):
     def isArea(self):
         return len(self.nodes) > 2 and self.nodes[0].id_elt == self.nodes[-1].id_elt
 
+    @property
+    def is_river(self):
+        if self.tags.__contains__("waterway"):
+            print(self.tags["waterway"])
+        return self.tags.get('waterway', "") == 'riverbank'
+
 
 class Area(Way):
     def __init__(self, id_elt, visible=True, ):

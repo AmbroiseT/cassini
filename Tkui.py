@@ -35,7 +35,9 @@ class TkUI():
                           for node in way.nodes]
 
                 style_parameters = self.style.get_parameters(way)
-                if 2 < len(points) < 50 and way.isArea() and style_parameters.get("visible", False):
+
+                #Avoid drawing too complex shapes for areas
+                if ((2 < len(points) < 50 and way.isArea()) or way.is_river) and style_parameters.get("visible", False):
                     self.canvas.create_polygon(points, fill=style_parameters.get('color', 'black'),
                                                outline=style_parameters.get('line-color', 'black'),
                                                width=0.2 * self.echelle.convert_km_to_px(style_parameters.get('width', 0)))

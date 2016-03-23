@@ -13,5 +13,6 @@
   "building:" : {"color" : "white", "visible" : "true"},
   "waterway:" : {"line-color" : "blue", "visible" : "true", "width" : 0.0035},
   "natural:water" : {"color" : "blue"},
-  "natural:island" : {"color" : "grey"}
+  "natural:island" : {"color" : "grey"},
+  "waterway:riverbank" : {"color" : "blue", "visible" : "true"}
 }
