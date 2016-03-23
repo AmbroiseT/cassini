@@ -80,8 +80,6 @@ class Way(Elt):
 
     @property
     def is_river(self):
-        if self.tags.__contains__("waterway"):
-            print(self.tags["waterway"])
         return self.tags.get('waterway', "") == 'riverbank'
 
 

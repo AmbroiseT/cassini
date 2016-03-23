@@ -9,6 +9,9 @@ Parsing and rendering OSRM raw data with Python
 ### New Render, with roads included :
 ![Capture](/images/Capture2.PNG)
 
+### Another Render, with rivers : 
+![Capture](/images/Capture3.PNG)
+
 ### Stylesheet support :
 You are now able to use stylesheets to pick your own choice of colors!
 The format of stylesheets is json, and heavily inspired on css:
