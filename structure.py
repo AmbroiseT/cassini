@@ -1,12 +1,5 @@
 # Container for all Map Data
 class ParsedMap:
-    nodes = {}
-    ways = {}
-    relations = {}
-    min_lat = 0
-    max_lat = 0
-    min_lon = 0
-    max_lon = 0
 
     def __init__(self):
         self.nodes = {}
@@ -24,9 +17,6 @@ class ParsedMap:
 
 
 class Elt:
-    id_elt = -1
-    tags = {}
-    visible = True
 
     def __init__(self, id_elt, visible=True):
         self.id_elt = id_elt
@@ -39,8 +29,6 @@ class Elt:
 
 
 class NodeElt(Elt):
-    lat = 0
-    lon = 0
 
     def __init__(self, id_elt, lat, lon, visible=True, ):
         super(NodeElt, self).__init__(id_elt, visible)
@@ -49,7 +37,6 @@ class NodeElt(Elt):
 
 
 class Way(Elt):
-    nodes = []
 
     def __init__(self, id_elt, visible=True, ):
         super(Way, self).__init__(id_elt, visible)
@@ -89,10 +76,10 @@ class Area(Way):
 
 
 class Relation(Elt):
-    members = []
 
     def __init__(self, id_elt):
+        super(Relation, self).__init__(id_elt)
         self.id_elt = id_elt
         self.members = []
-
+K
 
